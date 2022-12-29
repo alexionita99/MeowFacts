@@ -17,6 +17,8 @@
 
 package com.android.mc.project.meowfacts.network
 
-data class MeowFact(
-    val fact: String
+import com.squareup.moshi.Json
+
+data class MeowFactsList(
+    @Json(name = "data") val facts: List<String>
 )

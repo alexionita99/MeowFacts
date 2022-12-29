@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.android.mc.project.meowfacts.overview.OverviewViewModel" />
+        <variable
+            name="facts"
+            type="com.android.mc.project.meowfacts.network.MeowFactsList" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +38,7 @@
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="@{viewModel.response}"
+            android:text="@{viewModel.facts.facts[1]}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
