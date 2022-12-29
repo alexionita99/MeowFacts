@@ -3,6 +3,11 @@ package com.android.mc.project.meowfacts.overview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.android.mc.project.meowfacts.network.MeowFact
+import com.android.mc.project.meowfacts.network.MeowFactsApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OverviewViewModel : ViewModel() {
 
@@ -24,6 +29,17 @@ class OverviewViewModel : ViewModel() {
      * Sets the value of the status LiveData to the Mars API status.
      */
     private fun getMeowFacts() {
-        _response.value = "Set the Mars API Response here!"
+        MeowFactsApi.retrofitService.getFacts().enqueue(
+            object: Callback<List<MeowFact>> {
+                override fun onResponse(call: Call<List<MeowFact>>,
+                                        response: Response<List<MeowFact>>) {
+                    _response.value =
+                        "Success: ${response.body()?.size} Mars properties retrieved"
+                }
+
+                override fun onFailure(call: Call<List<MeowFact>>, t: Throwable) {
+                    _response.value = "Failure: " + t.message
+                }
+            })
     }
 }
