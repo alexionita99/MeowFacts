@@ -1,18 +1,17 @@
 package com.android.mc.project.meowfacts.overview
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.mc.project.meowfacts.R
 import com.android.mc.project.meowfacts.databinding.FragmentOverviewBinding
-import com.android.mc.project.meowfacts.network.FactsAdapter
 
 
 class OverviewFragment : Fragment() {
@@ -33,7 +32,8 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentOverviewBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_overview, container, false)
+            inflater, R.layout.fragment_overview, container, false
+        )
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
@@ -50,10 +50,22 @@ class OverviewFragment : Fragment() {
             }
         })
 
+        binding.getButton.setOnClickListener {
 
+            if (binding.factsNumber.text.length > 0){
+                if (binding.factsNumber.text.toString().toInt() > 0) {
+                    viewModel.getMeowFacts(binding.factsNumber.text.toString())
+                }
+                else context?.toast("Enter a positive number!")
+        }
+            else context?.toast("Enter a positive number!")
+        }
 
         return binding.root
     }
 }
 
 
+inline fun Context.toast(message:String){
+    Toast.makeText(this, message , Toast.LENGTH_SHORT).show()
+}

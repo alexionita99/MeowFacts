@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="250dp">
 
         <ImageView
             android:id="@+id/paw_image"
@@ -30,7 +30,9 @@
             android:layout_height="100dp"
             android:layout_gravity="end"
             android:adjustViewBounds="true"
+            android:fontFamily="@font/roboto"
             android:padding="5dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:textSize="12sp" />
     </LinearLayout>
 </layout>

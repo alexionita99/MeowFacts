@@ -1,4 +1,4 @@
-package com.android.mc.project.meowfacts.network
+package com.android.mc.project.meowfacts.overview
 
 import android.view.LayoutInflater
 import android.view.View

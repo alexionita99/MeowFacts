@@ -1,5 +1,6 @@
 package com.android.mc.project.meowfacts.overview
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,20 +20,24 @@ class OverviewViewModel : ViewModel() {
     val facts: LiveData<MeowFactsList>
         get() = _facts
 
+    private val _factsNumber = String()
+    var factsNumber: String = "5"
+        get() = _factsNumber
+
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
      */
     init {
-        getMeowFacts()
+        getMeowFacts("5")
     }
 
     /**
      * Sets the value of the status LiveData to the Mars API status.
      */
-    private fun getMeowFacts() {
+    fun getMeowFacts(factsNumber: String) {
         viewModelScope.launch {
             try {
-                _facts.value = MeowFactsApi.retrofitService.getFacts()
+                _facts.value = MeowFactsApi.retrofitService.getFacts(factsNumber)
                 _response.value = "Success: Facts retrieved"
 
             } catch (e: Exception) {
