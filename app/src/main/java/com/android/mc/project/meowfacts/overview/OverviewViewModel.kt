@@ -18,8 +18,8 @@ class OverviewViewModel(
     val response: LiveData<String>
         get() = _response
 
-    private val _facts = MutableLiveData<MeowFactsList>()
-    val facts: LiveData<MeowFactsList>
+    private val _facts = MutableLiveData<List<String>>()
+    val facts: LiveData<List<String>>
         get() = _facts
 
     private val _factsNumber = String()
@@ -39,8 +39,9 @@ class OverviewViewModel(
     fun getMeowFacts(factsNumber: String) {
         viewModelScope.launch {
             try {
-                _facts.value = MeowFactsApi.retrofitService.getFacts(factsNumber)
+                _facts.value = MeowFactsApi.retrofitService.getFacts(factsNumber).facts
                 _response.value = "Success: Facts retrieved"
+
 
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"

@@ -51,7 +51,7 @@ class OverviewFragment : Fragment() {
 
         viewModel.facts.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it.facts
+                adapter.data = it
             }
         })
 
