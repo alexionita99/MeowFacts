@@ -34,9 +34,12 @@ interface MeowFactsDatabaseDao {
     @Insert
     suspend fun insert(fact: MeowFact)
 
+    @Insert
+    suspend fun insertAll(facts: List<MeowFact>)
+
     @Query("DELETE FROM meow_facts_table")
     suspend fun clear()
 
     @Query("SELECT * FROM meow_facts_table")
-    fun getAllNights(): LiveData<List<MeowFact>>
+    fun getAllFacts(): List<MeowFact>
 }

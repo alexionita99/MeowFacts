@@ -6,8 +6,6 @@ import com.squareup.moshi.Json
 
 @Entity(tableName = "meow_facts_table")
 data class MeowFact(
-    @PrimaryKey(autoGenerate = true)
-    var factId : Long = 0L,
-
+    @PrimaryKey
     val fact: String = ""
 )

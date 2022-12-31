@@ -7,10 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.mc.project.meowfacts.R
+import com.android.mc.project.meowfacts.database.MeowFact
 
 class FactsAdapter: RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
 
-    var data =  listOf<String>()
+    var data =  listOf<MeowFact>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -32,8 +33,8 @@ class FactsAdapter: RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
         val factText: TextView = itemView.findViewById(R.id.fact)
         val pawImage: ImageView = itemView.findViewById(R.id.paw_image)
 
-        fun bind(item: String) {
-            factText.text = item
+        fun bind(item: MeowFact) {
+            factText.text = item.fact
             pawImage.setImageResource(R.drawable.paws)
         }
 
