@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality.database
+package com.android.mc.project.meowfacts.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.android.mc.project.meowfacts.network.MeowFactsList
 
 /**
  * A database that stores SleepNight information.
@@ -28,13 +29,13 @@ import androidx.room.RoomDatabase
  * This pattern is pretty much the same for any database,
  * so you can reuse it.
  */
-@Database(entities = [SleepNight::class], version = 1, exportSchema = false)
-abstract class SleepDatabase : RoomDatabase() {
+@Database(entities = [MeowFact::class], version = 1, exportSchema = false)
+abstract class MeowFactsDatabase : RoomDatabase() {
 
     /**
      * Connects the database to the DAO.
      */
-    abstract val sleepDatabaseDao: SleepDatabaseDao
+    abstract val meowFactsDatabaseDao: MeowFactsDatabaseDao
 
     /**
      * Define a companion object, this allows us to add functions on the SleepDatabase class.
@@ -53,7 +54,7 @@ abstract class SleepDatabase : RoomDatabase() {
          *  thread to shared data are visible to other threads.
          */
         @Volatile
-        private var INSTANCE: SleepDatabase? = null
+        private var INSTANCE: MeowFactsDatabase? = null
 
         /**
          * Helper function to get the database.
@@ -72,7 +73,7 @@ abstract class SleepDatabase : RoomDatabase() {
          *
          * @param context The application context Singleton, used to get access to the filesystem.
          */
-        fun getInstance(context: Context): SleepDatabase {
+        fun getInstance(context: Context): MeowFactsDatabase {
             // Multiple threads can ask for the database at the same time, ensure we only initialize
             // it once by using synchronized. Only one thread may enter a synchronized block at a
             // time.
@@ -86,7 +87,7 @@ abstract class SleepDatabase : RoomDatabase() {
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                             context.applicationContext,
-                            SleepDatabase::class.java,
+                            MeowFactsDatabase::class.java,
                             "sleep_history_database"
                     )
                             // Wipes and rebuilds instead of migrating if no Migration object.

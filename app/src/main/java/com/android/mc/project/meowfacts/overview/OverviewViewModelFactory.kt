@@ -20,7 +20,6 @@ package com.android.mc.project.meowfacts.overview
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.android.mc.project.meowfacts.database.MeowFactDatabaseDao
 
 /**
  * This is pretty much boiler plate code for a ViewModel Factory.

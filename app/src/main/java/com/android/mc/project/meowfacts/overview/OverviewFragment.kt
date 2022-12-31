@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.mc.project.meowfacts.R
-import com.android.mc.project.meowfacts.database.MeowFactDatabase
+import com.android.mc.project.meowfacts.database.MeowFactsDatabase
 import com.android.mc.project.meowfacts.databinding.FragmentOverviewBinding
 
 
@@ -29,9 +29,10 @@ class OverviewFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
+        val dataSource = MeowFactsDatabase.getInstance(application).meowFactsDatabaseDao
 
         // Create an instance of the ViewModel Factory.
-        //val dataSource = MeowFactDatabase.getInstance(application).meowFactDatabaseDao
+
         val viewModelFactory = OverviewViewModelFactory(application)
 
         // Get a reference to the ViewModel associated with this fragment.
