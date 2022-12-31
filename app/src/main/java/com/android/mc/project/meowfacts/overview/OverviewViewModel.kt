@@ -3,12 +3,14 @@ package com.android.mc.project.meowfacts.overview
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.android.mc.project.meowfacts.database.MeowFactsDatabaseDao
 import com.android.mc.project.meowfacts.network.MeowFactsApi
 import com.android.mc.project.meowfacts.network.MeowFactsList
 import kotlinx.coroutines.launch
 
 
 class OverviewViewModel(
+    dataSource: MeowFactsDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
 

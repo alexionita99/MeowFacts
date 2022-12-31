@@ -33,7 +33,7 @@ class OverviewFragment : Fragment() {
 
         // Create an instance of the ViewModel Factory.
 
-        val viewModelFactory = OverviewViewModelFactory(application)
+        val viewModelFactory = OverviewViewModelFactory(dataSource,application)
 
         // Get a reference to the ViewModel associated with this fragment.
         val viewModel =

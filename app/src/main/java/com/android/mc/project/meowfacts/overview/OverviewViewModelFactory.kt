@@ -20,6 +20,7 @@ package com.android.mc.project.meowfacts.overview
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.android.mc.project.meowfacts.database.MeowFactsDatabaseDao
 
 /**
  * This is pretty much boiler plate code for a ViewModel Factory.
@@ -27,13 +28,12 @@ import androidx.lifecycle.ViewModelProvider
  * Provides the SleepDatabaseDao and context to the ViewModel.
  */
 class OverviewViewModelFactory(
-        //private val dataSource: MeowFactDatabaseDao,
-        private val application: Application) : ViewModelProvider.Factory {
+    private val dataSource: MeowFactsDatabaseDao,
+    private val application: Application) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(OverviewViewModel::class.java)) {
-            //return OverviewViewModel(dataSource, application) as T
-            return OverviewViewModel(application) as T
+            return OverviewViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
