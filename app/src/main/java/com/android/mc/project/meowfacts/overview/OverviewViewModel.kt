@@ -1,16 +1,16 @@
 package com.android.mc.project.meowfacts.overview
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.android.mc.project.meowfacts.network.MeowFactsApi
 import com.android.mc.project.meowfacts.network.MeowFactsList
 import kotlinx.coroutines.launch
 
 
-class OverviewViewModel : ViewModel() {
+class OverviewViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
     private val _response = MutableLiveData<String>()
     val response: LiveData<String>

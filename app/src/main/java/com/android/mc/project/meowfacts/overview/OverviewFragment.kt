@@ -11,18 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.mc.project.meowfacts.R
+import com.android.mc.project.meowfacts.database.MeowFactDatabase
 import com.android.mc.project.meowfacts.databinding.FragmentOverviewBinding
 
 
 class OverviewFragment : Fragment() {
-
-    /**
-     * Lazily initialize our [OverviewViewModel].
-     */
-    private val viewModel: OverviewViewModel by lazy {
-        ViewModelProvider(this).get(OverviewViewModel::class.java)
-    }
-
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
      * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
@@ -34,6 +27,17 @@ class OverviewFragment : Fragment() {
         val binding: FragmentOverviewBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_overview, container, false
         )
+
+        val application = requireNotNull(this.activity).application
+
+        // Create an instance of the ViewModel Factory.
+        //val dataSource = MeowFactDatabase.getInstance(application).meowFactDatabaseDao
+        val viewModelFactory = OverviewViewModelFactory(application)
+
+        // Get a reference to the ViewModel associated with this fragment.
+        val viewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(OverviewViewModel::class.java)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
