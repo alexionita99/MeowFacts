@@ -55,6 +55,18 @@ class OverviewFragment : Fragment() {
             }
         })
 
+        viewModel.response.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it == "Success"){
+                    context?.toast("Success! Facts retrieved!")
+                }
+                else {
+                    context?.toast("Failure! Try checking your internet connection")
+                }
+
+            }
+        })
+
         binding.getButton.setOnClickListener {
 
             if (binding.factsNumber.text.length > 0){

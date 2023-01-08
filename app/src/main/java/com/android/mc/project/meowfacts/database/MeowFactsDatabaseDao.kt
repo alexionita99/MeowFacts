@@ -41,5 +41,5 @@ interface MeowFactsDatabaseDao {
     suspend fun clear()
 
     @Query("SELECT * FROM meow_facts_table")
-    fun getAllFacts(): List<MeowFact>
+    fun getAllFacts(): LiveData<List<MeowFact>>
 }
