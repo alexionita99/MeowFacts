@@ -68,7 +68,7 @@ class OverviewFragment : Fragment() {
             }
         })
 
-        // Button listener for "Get Facts!"
+        // Button listener for "Meow Facts!"
         binding.getButton.setOnClickListener {
 
             if (binding.factsNumber.text.length > 0) {
