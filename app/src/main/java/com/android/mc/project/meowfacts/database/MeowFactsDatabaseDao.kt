@@ -19,14 +19,11 @@ package com.android.mc.project.meowfacts.database
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
-import com.android.mc.project.meowfacts.network.MeowFactsList
 
 
 /**
- * Defines methods for using the SleepNight class with Room.
+ * Defines methods for using the MeowFact class with Room.
  */
 @Dao
 interface MeowFactsDatabaseDao {

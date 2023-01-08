@@ -17,33 +17,35 @@
 
 package com.android.mc.project.meowfacts.network
 
-import androidx.lifecycle.MutableLiveData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
+// The base URL of the public API
 private const val BASE_URL = "https://meowfacts.herokuapp.com"
 
+// Moshi is initialized
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+// Retrofit is initialized
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
 
-
+// The MeowFactsApiService interface, where the GET is defined.  A string is set as parameter,
+// so a variable number of facts can be retrieved
 interface MeowFactsApiService {
     @GET("/")
     suspend fun getFacts(@Query("count") count: String): MeowFactsList
 }
 
+// Lazy initialization of the API Service
 object MeowFactsApi {
     val retrofitService : MeowFactsApiService by lazy {
         retrofit.create(MeowFactsApiService::class.java) }

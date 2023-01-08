@@ -19,6 +19,8 @@ package com.android.mc.project.meowfacts.network
 
 import com.squareup.moshi.Json
 
+// This is the data class used to retrieve the facts. The API retrieves a single JSON object with
+// a list of strings
 data class MeowFactsList(
     @Json(name = "data") val facts: List<String>
 )

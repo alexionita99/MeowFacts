@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
+// This is the data class that will hold the database entries.
+// The main element is a string, and an Id is also needed
 @Entity(tableName = "meow_facts_table")
 data class MeowFact(
     @PrimaryKey(autoGenerate = true)

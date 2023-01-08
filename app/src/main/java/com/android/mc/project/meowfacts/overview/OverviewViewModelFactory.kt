@@ -22,11 +22,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.mc.project.meowfacts.database.MeowFactsDatabaseDao
 
-/**
- * This is pretty much boiler plate code for a ViewModel Factory.
- *
- * Provides the SleepDatabaseDao and context to the ViewModel.
- */
+// This is a Factory class to create the ViewModel
 class OverviewViewModelFactory(
     private val dataSource: MeowFactsDatabaseDao,
     private val application: Application) : ViewModelProvider.Factory {

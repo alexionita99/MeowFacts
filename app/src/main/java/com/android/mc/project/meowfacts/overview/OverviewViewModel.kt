@@ -9,32 +9,31 @@ import com.android.mc.project.meowfacts.network.MeowFactsApi
 import com.android.mc.project.meowfacts.network.MeowFactsList
 import kotlinx.coroutines.launch
 
-
+//OverviewViewModel, that has the datasource and context
 class OverviewViewModel(
     val dataSource: MeowFactsDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
 
+    // A response string to keep the users updated about the status of the retrieval
     private val _response = MutableLiveData<String>()
     val response: LiveData<String>
         get() = _response
 
+    // Get the LiveData from Room
     val facts = dataSource.getAllFacts();
 
+    // Used to retrieve the facts and insert them in the database
     private val _factsToAdd = MutableLiveData<List<String>>()
     val factsToAdd: LiveData<List<String>>
         get() = _factsToAdd
 
-    private val _factsNumber = String()
-    var factsNumber: String = "5"
-        get() = _factsNumber
-
-
+    // On initialization, get 5 facts
     init {
         getMeowFacts("5")
     }
 
-
+    // Function to get the facts and update the values
     fun getMeowFacts(factsNumber: String) {
         viewModelScope.launch {
             try {
@@ -49,6 +48,7 @@ class OverviewViewModel(
         }
     }
 
+    // A suspend function to process the retrieved facts and insert them  in the database
     private suspend fun insert(facts: List<String>) {
         val factList = ArrayList<MeowFact>()
         for (fact: String in facts)
