@@ -21,12 +21,10 @@ class OverviewViewModel(
         get() = _response
 
     // Get the LiveData from Room
-    val facts = dataSource.getAllFacts();
+    val facts = dataSource.getAllFacts()
 
     // Used to retrieve the facts and insert them in the database
-    private val _factsToAdd = MutableLiveData<List<String>>()
-    val factsToAdd: LiveData<List<String>>
-        get() = _factsToAdd
+    private var factsToAdd : List<String> = listOf()
 
     // On initialization, get 5 facts
     init {
@@ -37,9 +35,9 @@ class OverviewViewModel(
     fun getMeowFacts(factsNumber: String) {
         viewModelScope.launch {
             try {
-                _factsToAdd.value = MeowFactsApi.retrofitService.getFacts(factsNumber).facts
+                factsToAdd = MeowFactsApi.retrofitService.getFacts(factsNumber).facts
                 dataSource.clear()
-                insert(factsToAdd.value!!)
+                insert(factsToAdd!!)
                 _response.value = "Success"
 
             } catch (e: Exception) {
